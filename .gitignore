@@ -1,2 +1,5 @@
 *.zip
 *.class
+/.metadata/
+
+/.metadata/
