@@ -1,0 +1,8 @@
+package com.avvarga;
+
+public interface Ringable {
+	
+	 String ring(); 
+	 String unlock();
+	 
+}
