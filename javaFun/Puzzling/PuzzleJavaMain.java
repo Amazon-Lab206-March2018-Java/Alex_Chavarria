@@ -6,10 +6,10 @@ public class PuzzleJavaMain {
         String [] alphabet = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         // puzzle.sumArrayAndOver10(x);
         // puzzle.shuffleAndOver5(names);
-        puzzle.firstAndLastLetter(alphabet);
+        // puzzle.firstAndLastLetter(alphabet);
         // puzzle.randomNumbers55To100();
         // puzzle.sortRandomNumbersArray();
         // puzzle.randomString(alphabet);
-        // puzzle.arrayOfRandomStrings(alphabet);
+        puzzle.arrayOfRandomStrings(alphabet);
     }
 }
