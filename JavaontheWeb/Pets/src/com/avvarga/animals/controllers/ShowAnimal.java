@@ -36,7 +36,6 @@ public class ShowAnimal extends HttpServlet {
 		}
 		
 		else {
-			System.out.println(animal);
 			Cat cat = new Cat(name, breed, weight);
 			
 			request.setAttribute("cat", cat);
