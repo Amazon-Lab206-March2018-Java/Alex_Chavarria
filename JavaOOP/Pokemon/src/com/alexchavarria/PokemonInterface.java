@@ -10,7 +10,9 @@ public interface PokemonInterface {
 	static void attackPokemon(Pokemon pokemon) {
 		pokemon.setHealth(pokemon.getHealth()-10);
 	}
+	
 	static String pokemonInfo(Pokemon pokemon) {
 		return "Name: " +pokemon.getName()+ " Health: " +pokemon.getHealth()+" Type: " +pokemon.getType();
 	}
+	
 }

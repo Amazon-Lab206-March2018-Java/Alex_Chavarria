@@ -1,6 +1,8 @@
-package com.avvarga.controller;
+package com.avvarga.randomword.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Clicker
+ * Servlet implementation class RandomWordGenerator
  */
-@WebServlet("/Counter")
-public class Counter extends HttpServlet {
+@WebServlet("/Random")
+public class Random extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Counter() {
+    public Random() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,9 +42,20 @@ public class Counter extends HttpServlet {
 			session.setAttribute("count", count);
 		}
 		
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/clicker.jsp");
+		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		String word = "";
+		for (int i=0; i<10; i++) {
+			int character = (int)(Math.random()*characters.length());
+			word+=(characters.charAt(character));
+		}
+		session.setAttribute("word", word);
+		session.setAttribute("time", LocalDateTime.now());
+		
+		
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/index.jsp");
         view.forward(request, response);
 	}
+        
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
