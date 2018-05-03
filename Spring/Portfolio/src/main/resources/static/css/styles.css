@@ -1,0 +1,8 @@
+*{
+    text-align: center;
+}
+.home, .projects{
+    display: inline-block;
+    max-width: 200px;
+    vertical-align: middle;
+}
