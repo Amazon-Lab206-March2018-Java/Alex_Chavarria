@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.avvarga.displaydate</groupId>
-	<artifactId>DisplayDate</artifactId>
+	<groupId>com.avvarga.counter</groupId>
+	<artifactId>Counter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>DisplayDate</name>
-	<description>Spring Boot Display Date Project</description>
+	<name>Counter</name>
+	<description>Spring Boot Counter Project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -30,7 +30,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
-		<dependency>
+				<dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
@@ -38,7 +38,7 @@
                 <groupId>javax.servlet</groupId>
                 <artifactId>jstl</artifactId>
         </dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -48,10 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
 	</dependencies>
 
