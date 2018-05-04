@@ -1,0 +1,38 @@
+body{
+    padding: 10px;
+}
+#top{
+    display: inline-block;
+}
+#score{
+    display: inline-block;
+    width: 100px;
+    border: 2px solid black;
+    padding: 0px 20px;
+}
+.option{
+    display: inline-block;
+    text-align: center;
+    border: 2px solid black;
+    width: 200px;
+    height: 150px;
+    margin: 20px;
+    vertical-align: top;
+}
+#footer{
+    width: 900px;
+    border: 2px solid black;
+    margin: 0px 0px 0px 20px;
+    height: 200px;
+    overflow: scroll;
+    padding: 20px;
+}
+p{
+    display: block;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
