@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+#title, #links{
+	display: inline-block;
+}
+#links{
+	text-aling: right;
+	margin-left: 200px;
+}
+#comments{
+	margin: 20px;
+	border: 2px solid black;
+	max-width: 600px;
+	padding: 20px;
+}
+#checkbox{
+	display: block;
+	margin: 10px;
+}
