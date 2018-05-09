@@ -13,18 +13,20 @@
 <body>
 	<table>
         <thead>
+        <tr>
             <th>Name</th>
             <th>Creator</th>
             <th>Version</th>
             <th>Action</th>
+        </tr>
         </thead>
         <tbody>
             <c:forEach items ="${ languages }" var="language">
             	<tr>
-                    <td><a href='/languages/<c:out value="${languages.indexOf(language)}"/>'><c:out value="${language.name}"/></td></a>
+                    <td><a href='/languages/<c:out value="${ language.id }"/>'><c:out value="${language.name}"/></td></a>
                     <td><c:out value="${language.creator}"/></td>
                     <td><c:out value="${language.version}"/></td>
-                    <td><a href='/languages/delete/<c:out value="${languages.indexOf(language)}"/>'>Delete</a> | <a href='/languages/edit/<c:out value="${languages.indexOf(language)}"/>'>Edit</a></td>
+                    <td><a href='/languages/delete/<c:out value="${language.id}"/>'>Delete</a> | <a href='/languages/edit/<c:out value="${language.id}"/>'>Edit</a></td>
                 </tr>
             </c:forEach>
         </tbody>

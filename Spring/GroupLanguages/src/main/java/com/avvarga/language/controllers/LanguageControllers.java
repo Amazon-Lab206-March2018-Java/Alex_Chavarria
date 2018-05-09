@@ -1,5 +1,6 @@
 package com.avvarga.language.controllers;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,12 @@ public class LanguageControllers {
 	
 	@RequestMapping("/languages")
 	public String index (@ModelAttribute ("language") Language language, Model m) {
-		m.addAttribute("languages", languageService.showLanguages());
+		m.addAttribute("languages", languageService.allLanguages());
 		return "index.jsp";
 	}
 	
     @PostMapping("/languages/new")
-    public String createBook(@Valid @ModelAttribute("language") Language language, BindingResult result) {
+    public String createLanguage(@Valid @ModelAttribute("language") Language language, BindingResult result) {
         if (result.hasErrors()) {
             return "index.jsp";
         }else{
@@ -37,31 +38,33 @@ public class LanguageControllers {
         }
     }
     
-	@RequestMapping ("/languages/{index}")
-	public String show(@PathVariable String index, Model m) {
-		m.addAttribute("language", languageService.showLanguage(index));
+	@RequestMapping ("/languages/{id}")
+	public String show(@PathVariable Long id, Model m) {
+		m.addAttribute("language", languageService.showLanguage(id));
 		return "show.jsp";
 	}
 	
-	@RequestMapping ("/languages/edit/{index}")
-	public String edit(@PathVariable String index, Model m, @ModelAttribute ("language") Language language) {
-		m.addAttribute("language", languageService.showLanguage(index));
+	@RequestMapping ("/languages/edit/{id}")
+	public String edit(@PathVariable Long id, Model m, @ModelAttribute ("language") Language language) {
+		m.addAttribute("language", languageService.showLanguage(id));
 		return "edit.jsp";
 	}
 	
-	@RequestMapping ("/languages/edit/{index}/submit")
-	public String submit(@Valid @ModelAttribute ("language") Language language, BindingResult result, @PathVariable String index, Model m) {
+	@Transactional
+	@PostMapping ("/languages/edit/{id}")
+	public String submit(@Valid @ModelAttribute ("language") Language language, BindingResult result, @PathVariable Long id) {
 		if (result.hasErrors()) {
             return "index.jsp";
         }else{
-        	languageService.updateLanguage(index, language);
+        	language.setId(id);
+        	languageService.updateLanguage(language);
         	return "redirect:/languages";
         }
 	}
 	
-	@RequestMapping ("/languages/delete/{index}")
-	public String delete (@PathVariable String index, @ModelAttribute ("language") Language language) {
-		languageService.deleteLanguage(index, language);
+	@RequestMapping ("/languages/delete/{id}")
+	public String delete (@PathVariable ("id") Long id) {
+		languageService.deleteLanguage(id);
 		return "redirect:/languages";
 	}
 }

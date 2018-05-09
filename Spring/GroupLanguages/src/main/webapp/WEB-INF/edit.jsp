@@ -8,21 +8,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style type="text/css"><%@include file="skeleton.css" %></style>
+<style type="text/css"><%@include file="style.css" %></style>
 </head>
 <body>
-    <a href="/languages/delete/${ index }">Delete</a> | <a href="/languages">Dashboard</a>
-    <form:form action='/languages/edit/${ index }/submit' method="POST" modelAttribute="language">
+    <a href="/languages/delete/${ id }">Delete</a> | <a href="/languages">Dashboard</a>
+    <form:form action='/languages/edit/${ id }' method="POST" modelAttribute="language">
 
-        <form:label path="name">Name
+		<form:hidden path="id"/>
+
         <form:errors path="name"/>
+        <form:label path="name">Name
         <form:input path="name"/></form:label>
 
-        <form:label path="creator">Creator
         <form:errors path="creator"/>
+        <form:label path="creator">Creator
         <form:input path="creator"/></form:label>
 
-        <form:label path="version">Version
         <form:errors path="version"/>
+        <form:label path="version">Version
         <form:input path="version"/></form:label>
 
         <input type="submit" value="Submit">

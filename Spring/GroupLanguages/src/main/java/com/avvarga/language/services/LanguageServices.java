@@ -1,33 +1,39 @@
 package com.avvarga.language.services;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.avvarga.language.models.Language;
+import com.avvarga.language.repositories.LanguageRepo;
 
 @Service
 public class LanguageServices {
 	
-	ArrayList<Language> languages = new ArrayList<Language>();
+	private LanguageRepo languageRepo;
+	public LanguageServices (LanguageRepo languageRepo) {
+		this.languageRepo = languageRepo;
+	}
 	
 	public void addLanguage ( Language language ) {
-		languages.add(language);
+		languageRepo.save(language);
 	}
 	
-	public ArrayList<Language> showLanguages(){
-		return languages;
+	public List<Language> allLanguages(){
+		return languageRepo.findAll();
 	}
 	
-	public Language showLanguage (String index) {
-		return languages.get(Integer.parseInt(index));
+	public Language showLanguage (Long id) {
+		Optional<Language> optionalLanguage = languageRepo.findById(id);
+		return optionalLanguage.get();
 	}
 	
-	public void updateLanguage (String index, Language language) {
-		languages.set(Integer.parseInt(index), language);
+	public void updateLanguage (Language language) {
+		languageRepo.save(language);
 	}
 	
-	public void deleteLanguage (String index, Language language) {
-		languages.remove(Integer.parseInt(index));
+	public void deleteLanguage (Long id) {
+		languageRepo.deleteById(id);
 	}
 }
