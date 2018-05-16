@@ -37,5 +37,4 @@ public class ProductService {
 		prod.updateCategory(cat);
 		pRepo.save(prod);
 	}
-
 }
