@@ -33,6 +33,7 @@ public class UserController {
     public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
     	userValidator.validate(user, result);
         if (result.hasErrors()) {
+        	System.out.println(result);
             return "index.jsp";
         }
         userService.saveWithUserRole(user);
