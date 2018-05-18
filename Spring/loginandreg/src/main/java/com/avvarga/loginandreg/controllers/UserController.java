@@ -1,8 +1,9 @@
 package com.avvarga.loginandreg.controllers;
 
 import java.security.Principal;
-import java.util.Date;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,14 +32,25 @@ public class UserController {
 	}
     
     @PostMapping("/registration")
-    public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session) {
+    public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model, HttpSession session, HttpServletRequest request) {
     	userValidator.validate(user, result);
         if (result.hasErrors()) {
         	System.out.println(result);
             return "index.jsp";
+        } else {
+        	if (userService.findUserByRole("ROLE_ADMIN") == null) {
+        		userService.saveUserWithAdminRole(user);
+        	} else {
+        		userService.saveWithUserRole(user);
+        	}
+        	try {
+				request.login(user.getEmail(), user.getPasswordConfirmation());
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	return "redirect:/";        		
         }
-        userService.saveWithUserRole(user);
-        return "redirect:/login";
     }
     
     @RequestMapping("/login")
@@ -55,10 +68,28 @@ public class UserController {
     public String home(Principal principal, Model model) {
         String username = principal.getName();
         model.addAttribute("currentUser", userService.findByUsername(username));
-        User user= userService.findByUsername(username);
-        user.setLastLoginDate(new Date());
-        model.addAttribute("currentUser", user);
         return "dashboard.jsp";
+    }
+    
+    @RequestMapping("/admin")
+    public String adminPage(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("currentUser", userService.findByUsername(username));
+        model.addAttribute("users", userService.findAll());
+        return "adminPage.jsp";
+    }
+    
+    @RequestMapping("/delete/{id}")
+    public String deleteUser (@PathVariable("id") Long id ) {
+    	userService.deleteById(id);
+    	return "redirect:/admin";
+    }
+    
+    @RequestMapping("/makeAdmin/{id}")
+    public String makeAdmin (@PathVariable("id") Long id) {
+    	User user = userService.findById(id);
+    	userService.setAdmin(user);
+    	return "redirect:/admin";
     }
 }
 

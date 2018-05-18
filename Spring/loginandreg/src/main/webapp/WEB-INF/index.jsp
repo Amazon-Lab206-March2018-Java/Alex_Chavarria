@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Registration Page</title>
+<style type="text/css"><%@include file="skeleton.css" %></style>
 </head>
 <body>
 	<c:if test="${logoutMessage != null}">

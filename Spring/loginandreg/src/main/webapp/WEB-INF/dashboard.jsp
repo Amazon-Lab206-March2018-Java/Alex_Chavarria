@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome Page</title>
+<style type="text/css"><%@include file="skeleton.css" %></style>
 </head>
 <body>
     
@@ -15,7 +16,9 @@
     </form>
 
     <h1>Welcome Page <c:out value="${currentUser.firstName}"></c:out></h1>
-    
+    <c:if test="${ currentUser.roles[0].name == 'ROLE_ADMIN' }">
+    	<a href="/admin">Admin Dashboard</a>
+    </c:if>
     <table>
         <tbody>
             <tr>
