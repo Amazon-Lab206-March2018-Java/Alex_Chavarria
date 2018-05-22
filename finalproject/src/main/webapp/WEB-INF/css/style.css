@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+*{
+  text-align: center;
+}
+
+#login, #register{
+  display: inline-block;
+  vertical-align: middle;
+  margin: 20px;
+}
+#firstName\.errors, #lastName\.errors, #email\.errors, #password\.errors, #passwordConfirmation\.errors, #content\.errors {
+  color: red;
+  display: block;
+}
+
+#logoutForm{
+	float:right;
+}
+#welcome{
+	display: inline-block;
+}
+
+table{
+  margin: auto auto;
+}

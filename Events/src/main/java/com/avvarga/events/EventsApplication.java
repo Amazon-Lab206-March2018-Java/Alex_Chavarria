@@ -1,13 +1,12 @@
-package com.avvarga.loginandreg;
+package com.avvarga.events;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class LoginandregApplication {
+public class EventsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LoginandregApplication.class, args);
+		SpringApplication.run(EventsApplication.class, args);
 	}
 }
